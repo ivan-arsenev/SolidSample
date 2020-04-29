@@ -4,35 +4,28 @@ using System.Text;
 
 namespace ArdalisRating
 {
-    public class LandPolicyRater
+    public class LandPolicyRater : Rater
     {
-        private readonly RatingEngine _ratingEngine;
-        private ConsoleLogger _loger;
-
-        public LandPolicyRater(RatingEngine engine, ConsoleLogger loger)
+        public LandPolicyRater(RatingEngine engine, ConsoleLogger logger)
+            : base(engine, logger)
         {
-            _ratingEngine = engine;
-            _loger = loger;
         }
 
-        public void Rate(Policy policy)
+        public override void Rate(Policy policy)
         {
-
-            _loger.Log("Rating LAND policy...");
-            _loger.Log("Validating policy.");
+            _logger.Log("Rating LAND policy...");
+            _logger.Log("Validating policy.");
             if (policy.BondAmount == 0 || policy.Valuation == 0)
             {
-                _loger.Log("Land policy must specify Bond Amount and Valuation.");
+                _logger.Log("Land policy must specify Bond Amount and Valuation.");
                 return;
             }
             if (policy.BondAmount < 0.8m * policy.Valuation)
             {
-                _loger.Log("Insufficient bond amount.");
+                _logger.Log("Insufficient bond amount.");
                 return;
             }
-            _ratingEngine.Rating = policy.BondAmount * 0.05m;
-            
-
+            _engine.Rating = policy.BondAmount * 0.05m;
         }
     }
 }

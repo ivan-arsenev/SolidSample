@@ -19,7 +19,6 @@ namespace ArdalisRating
             {
                 Console.WriteLine("No rating produced.");
             }
-
         }
     }
 }

@@ -16,7 +16,6 @@ namespace ArdalisRating.Tests
                 Type = "Land",
                 BondAmount = 200000,
                 Valuation = 200000,
-                ElevationAboveSeaLevelFeet = 1001
             };
             string json = JsonConvert.SerializeObject(policy);
             File.WriteAllText("policy.json", json);
