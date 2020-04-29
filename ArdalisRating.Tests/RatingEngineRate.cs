@@ -5,6 +5,7 @@ using Xunit;
 
 namespace ArdalisRating.Tests
 {
+
     public class RatingEngineRate
     {
         [Fact]
@@ -12,9 +13,10 @@ namespace ArdalisRating.Tests
         {
             var policy = new Policy
             {
-                Type = PolicyType.Land,
+                Type = "Land",
                 BondAmount = 200000,
-                Valuation = 200000
+                Valuation = 200000,
+                ElevationAboveSeaLevelFeet = 1001
             };
             string json = JsonConvert.SerializeObject(policy);
             File.WriteAllText("policy.json", json);
@@ -31,7 +33,7 @@ namespace ArdalisRating.Tests
         {
             var policy = new Policy
             {
-                Type = PolicyType.Land,
+                //Type = PolicyType.Land,
                 BondAmount = 200000,
                 Valuation = 260000
             };
@@ -43,17 +45,6 @@ namespace ArdalisRating.Tests
             var result = engine.Rating;
 
             Assert.Equal(0, result);
-        }
-
-        [Fact]
-        public void ReturnsDefaultPolicyFromEmptyJsonString()
-        {
-            var inputJson = "{}";
-            var serializer = new JsonPolicySerializer();
-            var result = serializer.GetPolicyFromJson(inputJson);
-            var policy = new Policy();
-
-            Assert.Equal(policy, result);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ArdalisRating
         {
             try
             {
+                // using reflection instead of switch statement
                 return (Rater)Activator.CreateInstance(
                     Type.GetType($"ArdalisRating.{policy.Type}PolicyRater"),
                         new object[] { engine, engine.Logger });
@@ -18,6 +19,12 @@ namespace ArdalisRating
             {
                 return null;
             }
+
+            //switch (policy.Type)
+            //{
+            //    case PolicyType.Auto:
+            //        return new AutoPolicyRater(engine, engine.Logger);
+            //}
         }
     }
 }

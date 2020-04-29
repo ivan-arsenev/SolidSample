@@ -25,12 +25,12 @@ namespace ArdalisRating
             // load policy - open file policy.json
             string policyJson = PolicySource.GetPolicyFromSource();
 
-            var policy = PolicySerialazer.GetPolicyFromJson(policyJson);
+            var policy = PolicySerialazer.GetPolicyFromJsonString(policyJson);
 
             var factory = new RaterFactory();
 
             var rater = factory.Create(policy, this);
-            rater.Rate(policy);
+            rater?.Rate(policy);
 
 
             Logger.Log("Rating completed.");
