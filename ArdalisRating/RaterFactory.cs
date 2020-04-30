@@ -17,7 +17,7 @@ namespace ArdalisRating
             }
             catch
             {
-                return 
+                return new UnknownPolicyRater(engine, engine.Logger);
             }
 
             //switch (policy.Type)
