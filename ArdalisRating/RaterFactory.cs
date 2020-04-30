@@ -17,7 +17,7 @@ namespace ArdalisRating
             }
             catch
             {
-                return null;
+                return 
             }
 
             //switch (policy.Type)
